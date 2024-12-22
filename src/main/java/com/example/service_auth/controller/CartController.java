@@ -1,6 +1,7 @@
 package com.example.service_auth.controller;
 
 import com.example.service_auth.dto.request.ApiResponse;
+import com.example.service_auth.dto.response.CartItemResponse;
 import com.example.service_auth.entity.CartItem;
 import com.example.service_auth.service.cart.CartService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,8 @@ public class CartController {
 
     // xem chi tiết cart (xem  danh sách các item trong cart)
     @GetMapping("/get-user")
-    public ApiResponse<List<CartItem>> getCartById () {
-        return ApiResponse.<List<CartItem>>builder()
+    public ApiResponse<List<CartItemResponse>> getCartById () {
+        return ApiResponse.<List<CartItemResponse>>builder()
                 .code(200)
                 .message("success")
                 .result(cartService.getCartByUserId())
