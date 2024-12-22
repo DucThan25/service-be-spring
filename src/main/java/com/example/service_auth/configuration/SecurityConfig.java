@@ -32,7 +32,10 @@ public class SecurityConfig {
             "auth/token",
             "auth/introspect",
             "auth/logout",
-            "auth/refresh"
+            "auth/refresh",
+    };
+    private final String[] PUBLIC_ENDPOINTS_GET = {
+            "api/product",
     };
     @Autowired
     private CustomJwtDecoder customJwtDecoder;
@@ -42,6 +45,7 @@ public class SecurityConfig {
 
         httpSecurity.authorizeHttpRequests(request ->
                 request.requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+                        .requestMatchers(HttpMethod.GET, PUBLIC_ENDPOINTS_GET).permitAll()
                         //.requestMatchers(HttpMethod.GET, "api/users").hasRole(Role.ADMIN.name())  // co the dung hasAuthority("ROLE_ADMIN")
 
                         .anyRequest().authenticated());
